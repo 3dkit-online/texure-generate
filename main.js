@@ -13,19 +13,15 @@ window.onload = async () => {
     // 创建一个 regl 实例
     const regl = REGL({ canvas, attributes: { preserveDrawingBuffer: true } });
     var uniform = {
-        // speed: 5,
-
-        // height: 10,
-        // noiseStrength: 10.2,
-        // growthSpeed: 0.2,
-        // color: "#ffae23", // CSS string
-        u_color: [0, 128, 255], // RGB array
-        // color2: [0, 128, 255, 0.3], // RGB with alpha
-        // color3: { h: 350, s: 0.9, v: 0.3 } // Hue, saturation, value
+        u_color: [0, 0, 0],
+        color: [0, 0, 0]
     };
 
     var f1 = gui.addFolder('Colors');
-    f1.addColor(uniform, 'u_color');
+    const colorController = gui.addColor(uniform, 'color').onChange((color) => {
+        // 将 [0, 255] 范围的 RGB 值转换为 [0.0, 1.0] 范围
+        uniform.u_color = [color[0] / 255, color[1] / 255, color[2] / 255];
+      });
     f1.open();
 
     let shader = new CNoise(regl,uniform);
@@ -50,7 +46,7 @@ window.onload = async () => {
         const ctx = canvas.getContext('2d');
         const imageData = new ImageData(new Uint8ClampedArray(data), width, height);
         ctx.putImageData(imageData, 0, 0);
-        const imgUrl = canvas.toDataURL({ multiplier: 4 }); // 图像的DataURL
+        const imgUrl = canvas.toDataURL(); // 图像的DataURL
 
         console.log(imgUrl); // 输出图像的DataURL
     }

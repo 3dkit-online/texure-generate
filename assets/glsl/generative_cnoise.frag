@@ -29,5 +29,5 @@ void main(void) {
     float n = cnoise(xyz.xy * 4.0 * 1.5);
 
     // gl_FragColor = vec4(vec3(0.5 + 0.5 * vec3(n, n, n)),1.0);
-    gl_FragColor = vec4(vec3(0.5 + 0.5 * vec3(n, n, n))+u_color,1.0);
+    gl_FragColor = vec4(vec3(0.5 + 0.5 * vec3(n, n, n)) + u_color,1.0);
 }

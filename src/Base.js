@@ -5,7 +5,9 @@ export default class Base {
             u_resolution: ({ viewportWidth, viewportHeight }) => [viewportWidth, viewportHeight]
         }
         for(let key in uniform){
-            uniforms[key] = regl.prop(key);
+            if(key.includes("u_")){
+                uniforms[key] = regl.prop(key);
+            }
         }
         // Object.assign(uniforms,uniform);
         this.uniforms = uniforms;
@@ -39,6 +41,7 @@ export default class Base {
                 depth: 1
             })
             // Object.assign(this.uniforms,uniform);
+            // console.log(uniforms.u_color)
             Object.assign(uniforms,{ u_time })
             this.draw(uniforms)
         })
