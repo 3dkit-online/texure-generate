@@ -4,7 +4,7 @@ import glsl from 'vite-plugin-glsl';
 export default defineConfig(({ mode }) => {
     const plugins = [
       glsl({
-        root:"/node_modules",
+        // root:"/node_modules",
         checkRecursiveImports:false
       }),
     ];

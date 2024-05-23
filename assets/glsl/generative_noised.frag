@@ -6,7 +6,9 @@ uniform vec2    u_resolution;
 uniform float   u_time;
 
 #define NOISED_QUINTIC_INTERPOLATION
-#include "/lygia/generative/noised.glsl"
+
+#extension GL_GOOGLE_include_directive : enable
+#include "/node_modules/lygia/generative/noised.glsl"
 
 void main(void) {
     vec4 color = vec4(vec3(0.0), 1.0);
