@@ -5,6 +5,7 @@ precision mediump float;
 
 uniform vec2    u_resolution;
 uniform float   u_time;
+uniform vec3    u_color;
 
 #extension GL_GOOGLE_include_directive : enable
 #include "/node_modules/lygia/generative/cnoise.glsl"
@@ -27,5 +28,6 @@ void main(void) {
 
     float n = cnoise(xyz.xy * 4.0 * 1.5);
 
-    gl_FragColor = vec4(vec3(0.5 + 0.5 * vec3(n, n, n)),1.0);
+    // gl_FragColor = vec4(vec3(0.5 + 0.5 * vec3(n, n, n)),1.0);
+    gl_FragColor = vec4(vec3(0.5 + 0.5 * vec3(n, n, n))+u_color,1.0);
 }

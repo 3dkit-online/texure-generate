@@ -4,7 +4,11 @@ export default class Base {
             u_time: regl.prop('u_time'),
             u_resolution: ({ viewportWidth, viewportHeight }) => [viewportWidth, viewportHeight]
         }
-        Object.assign(uniforms,uniform);
+        for(let key in uniform){
+            uniforms[key] = regl.prop(key);
+        }
+        // Object.assign(uniforms,uniform);
+        this.uniforms = uniforms;
         this.regl = regl;
         this.draw = this.regl({
             vert,
@@ -28,16 +32,15 @@ export default class Base {
         });
     }
 
-    update() {
+    update(uniforms) {
         this.regl.frame(({ u_time }) => {
             this.regl.clear({
                 color: [0, 0, 0, 0],
                 depth: 1
             })
-
-            this.draw({
-                u_time
-            })
+            // Object.assign(this.uniforms,uniform);
+            Object.assign(uniforms,{ u_time })
+            this.draw(uniforms)
         })
     }
 }
