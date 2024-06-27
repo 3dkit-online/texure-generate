@@ -1,5 +1,5 @@
 import REGL from "regl";
-import CNoise from "./src/cnoise";
+import CNoise from "./src/Cnoise";
 // import frag from './assets/glsl/generative_random.frag';
 import * as dat from 'dat.gui';
 
